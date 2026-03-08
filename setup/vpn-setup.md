@@ -1,37 +1,40 @@
-VPC Setup
+# ⚙️ Setup Guide
 
-Created VPC with CIDR 10.0.0.0/16
+This document describes the setup of the **Secure Remote Access Infrastructure on AWS** using **VPC, EC2, and OpenVPN**.
 
-Created public and private subnets
+---
 
-Configured Internet Gateway
+## 1. VPC Setup
+VPC CIDR: 10.0.0.0/16
 
-EC2 Instances
+Subnets:
 
-VPN Server:
+| Subnet | CIDR | Purpose |
+|------|------|------|
+| Public Subnet | 10.0.1.0/24 | VPN Server |
+| Private Subnet | 10.0.2.0/24 | Internal Server |
 
-Ubuntu 22.04
+Internet Gateway attached to the VPC.
+Route Table
+Destination: 0.0.0.0/0
+Target: Internet Gateway
 
-Public Subnet
+---
 
-OpenVPN installed
+## 2. Architecture
+            Internet
+                │
+                │
+        ┌──────────────┐
+        │  OpenVPN EC2 │
+        │ PublicSubnet │
+        └───────┬──────┘
+                │
+                │ VPN
+                │
+        ┌───────▼──────┐
+        │ Private EC2  │
+        │PrivateSubnet │
+        └──────────────┘
 
-Internal Server:
-
-Ubuntu 22.04
-
-Private Subnet
-
-No public IP
-
-Security Configuration
-
-VPN Server Security Group
-
-SSH 22
-UDP 1194
-
-Internal Server Security Group
-
-SSH from VPC
-ICMP from VPC
+  
