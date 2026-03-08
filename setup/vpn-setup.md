@@ -82,6 +82,7 @@ Public IP: Disabled
 ---
 
 ## 5. Access Flow
+---
 User
 │
 │ OpenVPN Connection
@@ -91,6 +92,7 @@ VPN Server
 │ Internal Network
 ▼
 Private Server (SSH)
+---
 
 Users connect to **OpenVPN** and then access the **private EC2 server via SSH**.
 
